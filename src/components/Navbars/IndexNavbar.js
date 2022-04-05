@@ -115,6 +115,13 @@ function IndexNavbar({ NotTrans }) {
                     >
                       Home
                     </DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem
+                      href="#pablo"
+                      onClick={(e) => window.location.href = "/profile-page"}
+                    >
+                      Dashboard
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
             </NavItem>

@@ -25,6 +25,9 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
+import ProfileItem from "./ProfileItem.js";
+import AddProfile from "./AddProfile.js";
+
 function ProfilePage() {
   const [activeTab, setActiveTab] = React.useState("1");
 
@@ -57,12 +60,12 @@ function ProfilePage() {
             </div>
             <div className="name">
               <h4 className="title">
-                Jane Faker <br />
+                User name <br />
               </h4>
               <h6 className="description">Music Producer</h6>
             </div>
           </div>
-          <Row>
+          {/*<Row>
             <Col className="ml-auto mr-auto text-center" md="6">
               <p>
                 An artist of considerable range, Jane Faker — the name taken by
@@ -75,7 +78,7 @@ function ProfilePage() {
                 <i className="fa fa-cog" /> Settings
               </Button>
             </Col>
-          </Row>
+          </Row>*/}
           <br />
           <div className="nav-tabs-navigation">
             <div className="nav-tabs-wrapper">
@@ -87,7 +90,7 @@ function ProfilePage() {
                       toggle("1");
                     }}
                   >
-                    Follows
+                    <span style={{ fontWeight: 'bold' }} >Profiles</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -97,7 +100,7 @@ function ProfilePage() {
                       toggle("2");
                     }}
                   >
-                    Following
+                    <span style={{ fontWeight: 'bold' }} >Add Profiles</span>
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -109,120 +112,16 @@ function ProfilePage() {
               <Row>
                 <Col className="ml-auto mr-auto" md="6">
                   <ul className="list-unstyled follows">
-                    <li>
-                      <Row>
-                        <Col className="ml-auto mr-auto" lg="2" md="4" xs="4">
-                          <img
-                            alt="..."
-                            className="img-circle img-no-padding img-responsive"
-                            src={
-                              require("assets/img/faces/clem-onojeghuo-2.jpg")
-                                .default
-                            }
-                          />
-                        </Col>
-                        <Col className="ml-auto mr-auto" lg="7" md="4" xs="4">
-                          <h6>
-                            Flume <br />
-                            <small>Musical Producer</small>
-                          </h6>
-                        </Col>
-                        <Col className="ml-auto mr-auto" lg="3" md="4" xs="4">
-                          <FormGroup check>
-                            <Label check>
-                              <Input
-                                defaultChecked
-                                defaultValue=""
-                                type="checkbox"
-                              />
-                              <span className="form-check-sign" />
-                            </Label>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                    </li>
+                    <ProfileItem />
                     <hr />
-                    <li>
-                      <Row>
-                        <Col className="mx-auto" lg="2" md="4" xs="4">
-                          <img
-                            alt="..."
-                            className="img-circle img-no-padding img-responsive"
-                            src={
-                              require("assets/img/faces/ayo-ogunseinde-2.jpg")
-                                .default
-                            }
-                          />
-                        </Col>
-                        <Col lg="7" md="4" xs="4">
-                          <h6>
-                            Banks <br />
-                            <small>Singer</small>
-                          </h6>
-                        </Col>
-                        <Col lg="3" md="4" xs="4">
-                          <FormGroup check>
-                            <Label check>
-                              <Input defaultValue="" type="checkbox" />
-                              <span className="form-check-sign" />
-                            </Label>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                    </li>
                   </ul>
                 </Col>
               </Row>
             </TabPane>
             <TabPane className="text-center" tabId="2" id="following">
-                <div className="section landing-section">
-          <Container>
-            <Row>
-              <Col className="ml-auto mr-auto" md="8">
-                <h2 className="text-center">Keep in touch?</h2>
-                <Form className="contact-form">
-                  <Row>
-                    <Col md="6">
-                      <label>Name</label>
-                      <InputGroup>
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="nc-icon nc-single-02" />
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input placeholder="Name" type="text" />
-                      </InputGroup>
-                    </Col>
-                    <Col md="6">
-                      <label>Email</label>
-                      <InputGroup>
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="nc-icon nc-email-85" />
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input placeholder="Email" type="text" />
-                      </InputGroup>
-                    </Col>
-                  </Row>
-                  <label>Message</label>
-                  <Input
-                    placeholder="Tell us your thoughts and feelings..."
-                    type="textarea"
-                    rows="4"
-                  />
-                  <Row>
-                    <Col className="ml-auto mr-auto" md="4">
-                      <Button className="btn-fill" color="danger" size="lg">
-                        Send Message
-                      </Button>
-                    </Col>
-                  </Row>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+                <div className="">
+                 <AddProfile />
+                </div>
             </TabPane>
           </TabContent>
         </Container>
