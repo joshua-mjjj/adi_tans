@@ -1,7 +1,7 @@
 import axios from "axios";
 import { userConstants } from "_constants";
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/source",
+  baseURL: `${process.env.REACT_APP_API_URL}`,
 });
 
 export const register = (userInitials, history) => (dispatch) => {
