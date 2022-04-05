@@ -5,14 +5,18 @@ import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 
 // core components
 import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
-import CircularProgress from "@mui/material/CircularProgress";
 
+<<<<<<< HEAD
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
 import { useDispatch } from "react-redux";
+=======
+import { useDispatch, useSelector } from "react-redux";
+>>>>>>> Update:Spinner
 import { register } from "_actions/user.actions";
 import { useHistory } from "react-router-dom";
+import Spinner from "components/Spinner";
 
 const userCredentials = {
   email: "",
@@ -28,6 +32,8 @@ function RegisterPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [userInitials, setUserInitials] = React.useState(userCredentials);
+  const { register_loading } = useSelector((state) => state.registration);
+  console.log(register_loading);
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
@@ -187,6 +193,7 @@ function RegisterPage() {
                     </Row>
                   <Button block className="btn-round" color="white">
                     Register
+                    {register_loading && <Spinner />}
                   </Button>
                 </Form>
                 <div className="forgot">
