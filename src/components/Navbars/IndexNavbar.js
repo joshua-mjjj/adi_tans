@@ -65,7 +65,7 @@ function IndexNavbar({ NotTrans }) {
             target="_blank"
             title="Coded by Creative Tim"
           >
-            Adi-tans
+            Ad-ditans
           </NavbarBrand>
           <button
             aria-expanded={navbarCollapse}
@@ -106,7 +106,7 @@ function IndexNavbar({ NotTrans }) {
                     className="dropdown-info"
                   >
                     <DropdownItem header tag="span">
-                      Adi-tans Home
+                      Ad-ditans Home
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem
@@ -171,7 +171,7 @@ function IndexNavbar({ NotTrans }) {
                     className="dropdown-info"
                   >
                     <DropdownItem header tag="span">
-                      Adi-tans Register
+                      Ad-ditans Register
                     </DropdownItem>
                     <DropdownItem
                       href="#pablo"

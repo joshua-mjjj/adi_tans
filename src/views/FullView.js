@@ -1,9 +1,5 @@
-
 import React from "react";
 
-// reactstrap components
-
-// core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
