@@ -8,6 +8,7 @@ import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
 
 import { useDispatch } from "react-redux";
 import { register } from "_actions/user.actions";
+import { useHistory } from "react-router-dom";
 
 const userCredentials = {
   email: "",
@@ -20,6 +21,7 @@ const userCredentials = {
 
 function RegisterPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [userInitials, setUserInitials] = React.useState(userCredentials);
 
   const handleInputChange = (e) => {
@@ -37,7 +39,7 @@ function RegisterPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(userInitials));
+    dispatch(register(userInitials, history));
     handleClearForm();
   };
 

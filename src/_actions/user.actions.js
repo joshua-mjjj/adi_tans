@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: "http://127.0.0.1:8000/source",
 });
 
-export const register = (userInitials) => (dispatch) => {
+export const register = (userInitials, history) => (dispatch) => {
   console.log(userInitials);
 
   const config = {
@@ -43,6 +43,7 @@ export const register = (userInitials) => (dispatch) => {
             type: userConstants.LOGIN_SUCCESS,
             payload: data,
           });
+          history.push("/login");
         })
         .catch((err) => {
           console.log(err);
@@ -69,9 +70,9 @@ export const login = (userInitials) => (dispatch) => {
   });
 
   if (userInitials) {
-    if (userInitials.email && userInitials.password) {
+    if (userInitials.username && userInitials.password) {
       const object = {
-        email: userInitials.email,
+        username: userInitials.username,
         password: userInitials.password,
       };
       console.log(object);

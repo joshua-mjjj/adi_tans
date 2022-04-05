@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { login } from "_actions/user.actions";
 
 const userCredentials = {
-  email: "",
+  username: "",
   password: "",
 };
 
@@ -61,13 +61,13 @@ function Login() {
               <Card className="card-register ml-auto mr-auto">
                 <h3 className="title mx-auto">Ad-ditans Login</h3>
                 <Form className="register-form" onSubmit={handleSubmit}>
-                  <label>Email</label>
+                  <label>Username</label>
                   <Input
-                    placeholder="Email"
+                    placeholder="Username"
                     type="text"
-                    value={userInitials.email}
+                    value={userInitials.username}
                     onChange={handleInputChange}
-                    name="email"
+                    name="username"
                   />
                   <label>Password</label>
                   <Input
