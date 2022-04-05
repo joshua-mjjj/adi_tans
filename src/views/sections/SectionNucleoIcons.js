@@ -23,23 +23,6 @@ function SectionNucleoIcons() {
     
               </p>
               <br />
-              <Button
-                className="btn-round"
-                color="danger"
-                href="/nucleo-icons"
-                target="_blank"
-              >
-                Get started
-              </Button>
-              <Button
-                className="btn-round ml-1"
-                color="danger"
-                href="https://nucleoapp.com/?ref=1712"
-                outline
-                target="_blank"
-              >
-                Weather Updates
-              </Button>
             </Col>
             <Col lg="6" md="12">
               
