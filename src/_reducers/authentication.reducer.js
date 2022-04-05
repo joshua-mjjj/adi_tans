@@ -7,6 +7,7 @@ const initialState = {
   loggedIn: false,
   token: localStorage.getItem('token'),
   user: null,
+  token: null,
 };
 
 export function authentication(state = initialState, action) {
@@ -30,7 +31,7 @@ export function authentication(state = initialState, action) {
         loggedIn: true,
       };
     case userConstants.LOGIN_SUCCESS:
-      localStorage.setItem('token', action.payload.token)
+      localStorage.setItem("token", JSON.stringify(action.payload));
       return {
         ...state,
         token: action.payload.token,

@@ -4,14 +4,54 @@ const api = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}`,
 });
 
-export const register = (userInitials, history) => (dispatch) => {
-  console.log(userInitials);
+export const register =
+  (email, username, first_name, last_name, phone_number, password, history) =>
+  (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const data_object = JSON.stringify({
+      email,
+      username,
+      first_name,
+      last_name,
+      phone_number,
+      password,
+    });
+    dispatch({
+      type: userConstants.LOGIN_REQUEST,
+    });
 
+    console.log(data_object);
+    api
+      .post("/signup/", data_object, config)
+      .then(({ data }) => {
+        console.log(data);
+        localStorage.setItem("user", JSON.stringify(data));
+        dispatch({
+          type: userConstants.LOGIN_SUCCESS,
+          payload: data,
+        });
+        history.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: userConstants.LOGIN_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+export const login = (username, password) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
+<<<<<<< HEAD
 
   dispatch({
     type: userConstants.LOGIN_REQUEST,
@@ -80,6 +120,28 @@ export const login = (username, password) => async (dispatch) => {
             payload: err,
           });
         });
+=======
+  const data_object = JSON.stringify({ username, password });
+  dispatch({ type: userConstants.LOGIN_REQUEST });
+  console.log(data_object);
+  await api
+    .post("/login/", data_object, config)
+    .then(({ data }) => {
+      console.log(data);
+      localStorage.setItem("user", JSON.stringify(data));
+      dispatch({
+        type: userConstants.LOGIN_SUCCESS,
+        payload: data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: userConstants.LOGIN_FAILURE,
+        payload: err,
+      });
+    });
+>>>>>>> Update:refractor register
 };
 export const logout = () => (dispatch) => {
 

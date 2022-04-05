@@ -44,7 +44,31 @@ function RegisterPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(userInitials, history));
+
+    if (userInitials) {
+      if (
+        userInitials.email &&
+        userInitials.first_name &&
+        userInitials.last_name &&
+        userInitials.password &&
+        userInitials.phone_number &&
+        userInitials.username
+      ) {
+        dispatch(
+          register(
+            userInitials.email,
+            userInitials.first_name,
+            userInitials.last_name,
+            userInitials.password,
+            userInitials.phone_number,
+            userInitials.username,
+            history
+          )
+        );
+      }
+    } else {
+      // send message or error to user
+    }
     handleClearForm();
   };
 
