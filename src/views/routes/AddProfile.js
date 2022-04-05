@@ -35,6 +35,15 @@ function AddProfile() {
     console.log(profile_type)
     console.log(photo.name)
     console.log(photo)
+
+    const uploadData = new FormData();
+    uploadData.append('profile_image', photo, photo.name);
+    uploadData.append('pin', pin);
+    uploadData.append('investment_plan', investment_plan);
+    uploadData.append('profile_type', profile_type);
+
+    // send uploadData oject to api
+
   }
 
   const handle_photo = (e) => {
