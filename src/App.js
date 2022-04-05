@@ -11,6 +11,7 @@ import LandingPage from "./views/routes/LandingPage.js";
 import ProfilePage from "./views/routes/ProfilePage.js";
 import RegisterPage from "./views/routes/RegisterPage.js";
 import Login from "./views/routes/Login.js";
+import PrivateRoute from "./views/routes/PrivateRoute.js";
 // others
 
 function App() {
@@ -22,10 +23,11 @@ function App() {
           path="/landing-page"
           render={(props) => <LandingPage {...props} />}
         />
-        <Route
+      {/*  <Route
           path="/profile-page"
           render={(props) => <ProfilePage {...props} />}
-        />
+        />*/}
+        <PrivateRoute path="/profile-page" component={ProfilePage} />
         <Route
           path="/register"
           render={(props) => <RegisterPage {...props} />}

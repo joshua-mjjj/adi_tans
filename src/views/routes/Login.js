@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 // reactstrap components
 import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
@@ -15,7 +17,7 @@ const userCredentials = {
   password: "",
 };
 
-function Login() {
+function Login(props) {
   const dispatch = useDispatch();
   const [userInitials, setUserInitials] = React.useState(userCredentials);
 
@@ -51,6 +53,13 @@ function Login() {
       document.body.classList.remove("register-page");
     };
   });
+
+  console.log(props.auth.loggedIn)
+    if (props.auth.loggedIn) {
+    // if (props.auth.user !== null) {
+        return <Redirect to="/profile-page" />;
+      }
+
   return (
     <>
       <ExamplesNavbar />
@@ -113,4 +122,8 @@ function Login() {
   );
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.authentication,
+});
+
+export default connect(mapStateToProps, null)(Login);

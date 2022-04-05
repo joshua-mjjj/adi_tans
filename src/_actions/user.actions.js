@@ -68,12 +68,10 @@ export const login = (username, password) => async (dispatch) => {
       console.log(data_object);
       await api
         .post("/login/", data_object, config)
-        .then(({ data }) => {
-          console.log(data);
-          localStorage.setItem("user", JSON.stringify(data));
+        .then((res) => {
           dispatch({
             type: userConstants.LOGIN_SUCCESS,
-            payload: data,
+            payload: res.data,
           });
         })
         .catch((err) => {
