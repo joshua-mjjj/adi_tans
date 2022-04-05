@@ -6,7 +6,41 @@ import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 // core components
 import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
 
+import { useDispatch } from "react-redux";
+import { register } from "_actions/user.actions";
+
+const userCredentials = {
+  email: "",
+  password: "",
+  first_name: "",
+  last_name: "",
+  username: "",
+  phone_number: "",
+};
+
 function RegisterPage() {
+  const dispatch = useDispatch();
+  const [userInitials, setUserInitials] = React.useState(userCredentials);
+
+  const handleInputChange = (e) => {
+    const { value, name } = e.target;
+    console.log(userInitials);
+    setUserInitials({
+      ...userInitials,
+      [name]: value,
+    });
+  };
+
+  const handleClearForm = () => {
+    setUserInitials(userCredentials);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(register(userInitials));
+    handleClearForm();
+  };
+
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("register-page");
@@ -30,37 +64,56 @@ function RegisterPage() {
             <Col className="ml-auto mr-auto" lg="4">
               <Card className="card-register ml-auto mr-auto">
                 <h3 className="title mx-auto">Ad-ditans Register</h3>
-                {/*<div className="social-line text-center">
-                  <Button
-                    className="btn-neutral btn-just-icon mr-1"
-                    color="facebook"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="fa fa-facebook-square" />
-                  </Button>
-                  <Button
-                    className="btn-neutral btn-just-icon mr-1"
-                    color="google"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="fa fa-google-plus" />
-                  </Button>
-                  <Button
-                    className="btn-neutral btn-just-icon"
-                    color="twitter"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="fa fa-twitter" />
-                  </Button>
-                </div>*/}
-                <Form className="register-form">
+
+                <Form className="register-form" onSubmit={handleSubmit}>
+                  <label>First Name</label>
+                  <Input
+                    placeholder="First Name"
+                    type="text"
+                    value={userInitials.first_name}
+                    onChange={handleInputChange}
+                    name="first_name"
+                  />
+                  <label>Last Name</label>
+                  <Input
+                    placeholder="Last Name"
+                    type="text"
+                    value={userInitials.last_name}
+                    onChange={handleInputChange}
+                    name="last_name"
+                  />
+                  <label>Username</label>
+                  <Input
+                    placeholder="Username"
+                    type="text"
+                    value={userInitials.username}
+                    onChange={handleInputChange}
+                    name="username"
+                  />
                   <label>Email</label>
-                  <Input placeholder="Email" type="text" />
+                  <Input
+                    placeholder="Email"
+                    type="text"
+                    value={userInitials.email}
+                    onChange={handleInputChange}
+                    name="email"
+                  />
+                  <label>Contact</label>
+                  <Input
+                    placeholder="Contact"
+                    type="tel"
+                    value={userInitials.phone_number}
+                    onChange={handleInputChange}
+                    name="phone_number"
+                  />
                   <label>Password</label>
-                  <Input placeholder="Password" type="password" />
+                  <Input
+                    placeholder="Password"
+                    type="password"
+                    value={userInitials.password}
+                    onChange={handleInputChange}
+                    name="password"
+                  />
                   <Button block className="btn-round" color="white">
                     Register
                   </Button>
@@ -81,8 +134,8 @@ function RegisterPage() {
         </Container>
         <div className="footer register-footer text-center">
           <h6>
-            © {new Date().getFullYear()} {" "}
-            <i className="fa fa-heart heart" /> Ad-ditans
+            © {new Date().getFullYear()} <i className="fa fa-heart heart" />{" "}
+            Ad-ditans
           </h6>
         </div>
       </div>
