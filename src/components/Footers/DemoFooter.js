@@ -13,33 +13,32 @@ function DemoFooter() {
             <ul>
               <li>
                 <a
-                  href="https://www.creative-tim.com?ref=pkr-footer"
-                  target="_blank"
+                  href="/index"
                 >
-                  About
+                  Home
                 </a>
               </li>
               <li>
                 <a
-                  href="http://blog.creative-tim.com/?ref=pkr-footer"
+                  href="/login"
                   target="_blank"
                 >
-                 Contact
+                  Login
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.creative-tim.com/license?ref=pkr-footer"
+                  href="/register"
                   target="_blank"
                 >
-                 Terms of use
+                  Register
                 </a>
               </li>
             </ul>
           </nav>
           <div className="credits ml-auto">
             <span className="copyright">
-              © {new Date().getFullYear()}, all rights reserved{" "} Ad-ditans
+              © {new Date().getFullYear()}, all rights reserved{" "} Global news
             </span>
           </div>
         </Row>

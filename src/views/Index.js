@@ -6,12 +6,12 @@ import React from "react";
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
-import DemoFooter from "components/Footers/DemoFooter.js";
+import Footer from "components/Footers/DemoFooter.js";
 
 // index sections
-import SectionCarousel from "views/index-sections/SectionCarousel.js";
-import SectionNucleoIcons from "views/index-sections/SectionNucleoIcons.js";
-import Landing from "views/examples/LandingPage.js";
+import SectionCarousel from "./sections/SectionCarousel.js";
+import SectionNucleoIcons from "./sections/SectionNucleoIcons.js";
+import Landing from "views/routes/LandingPage.js";
 
 
 function Index() {
@@ -29,7 +29,7 @@ function Index() {
       <div className="main">
         <Landing />
         <SectionNucleoIcons />
-        <DemoFooter />
+        <Footer />
       </div>
     </>
   );
