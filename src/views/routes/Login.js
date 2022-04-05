@@ -33,7 +33,13 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(userInitials));
+    if (userInitials) {
+      if (userInitials.username && userInitials.password) {
+        dispatch(login(userInitials.username, userInitials.password));
+      }
+    }else{
+      // Show user some message asking them to enter all required information correctly
+    }
     handleClearForm();
   };
 

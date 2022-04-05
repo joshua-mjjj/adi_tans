@@ -56,28 +56,18 @@ export const register = (userInitials, history) => (dispatch) => {
   }
 };
 
-export const login = (userInitials) => (dispatch) => {
-  console.log(userInitials);
+export const login = (username, password) => async (dispatch) => {
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  dispatch({
-    type: userConstants.LOGIN_REQUEST,
-  });
-
-  if (userInitials) {
-    if (userInitials.username && userInitials.password) {
-      const object = {
-        username: userInitials.username,
-        password: userInitials.password,
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
       };
-      console.log(object);
-      api
-        .post("/login/", object, config)
+      const data_object = JSON.stringify({ username, password });
+      dispatch({ type: userConstants.LOGIN_REQUEST });
+      console.log(data_object);
+      await api
+        .post("/login/", data_object, config)
         .then(({ data }) => {
           console.log(data);
           localStorage.setItem("user", JSON.stringify(data));
@@ -93,7 +83,5 @@ export const login = (userInitials) => (dispatch) => {
             payload: err,
           });
         });
-    }
-  }
 };
 export const logout = () => (dispatch) => {};
