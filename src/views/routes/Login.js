@@ -10,12 +10,8 @@ import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
 
 import { useDispatch } from "react-redux";
 
-import { login } from "_actions/user.actions";
-<<<<<<< HEAD
-import { loadUser } from "_actions/user.actions.js";
-=======
+import { login,loadUser } from "_actions/user.actions";
 import Spinner from "components/Spinner";
->>>>>>> Update:Spinner
 
 const userCredentials = {
   username: "",
@@ -67,18 +63,11 @@ function Login(props) {
     };
   });
 
-<<<<<<< HEAD
-    if (props.auth.loggedIn) {
-    // if (props.auth.user !== null) {
-        return <Redirect to="/profile-page" />;
-    }
-=======
   console.log(props.auth.loggedIn);
   if (props.auth.loggedIn) {
     // if (props.auth.user !== null) {
     return <Redirect to="/profile-page" />;
   }
->>>>>>> Update:Spinner
 
   return (
     <>
