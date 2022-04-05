@@ -16,7 +16,7 @@ function DemoFooter() {
                   href="https://www.creative-tim.com?ref=pkr-footer"
                   target="_blank"
                 >
-                  Global
+                  About
                 </a>
               </li>
               <li>
@@ -24,7 +24,7 @@ function DemoFooter() {
                   href="http://blog.creative-tim.com/?ref=pkr-footer"
                   target="_blank"
                 >
-                  Local
+                 Contact
                 </a>
               </li>
               <li>
@@ -32,14 +32,14 @@ function DemoFooter() {
                   href="https://www.creative-tim.com/license?ref=pkr-footer"
                   target="_blank"
                 >
-                  Weather
+                 Terms of use
                 </a>
               </li>
             </ul>
           </nav>
           <div className="credits ml-auto">
             <span className="copyright">
-              © {new Date().getFullYear()}, all rights reserved{" "} Global news
+              © {new Date().getFullYear()}, all rights reserved{" "} Ad-ditans
             </span>
           </div>
         </Row>

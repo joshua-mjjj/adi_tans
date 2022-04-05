@@ -21,7 +21,7 @@ function Login() {
         className="page-header"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/login-image.jpg").default + ")",
+            "url(" + require("assets/img/goldenboy.jpg").default + ")",
         }}
       >
         <div className="filter" />
@@ -29,7 +29,7 @@ function Login() {
           <Row>
             <Col className="ml-auto mr-auto" lg="4">
               <Card className="card-register ml-auto mr-auto">
-                <h3 className="title mx-auto">Adi-tans Login</h3>
+                <h3 className="title mx-auto">Ad-ditans Login</h3>
                 {/*<div className="social-line text-center">
                   <Button
                     className="btn-neutral btn-just-icon mr-1"
@@ -61,7 +61,7 @@ function Login() {
                   <Input placeholder="Email" type="text" />
                   <label>Password</label>
                   <Input placeholder="Password" type="password" />
-                  <Button block className="btn-round" color="danger">
+                  <Button block className="btn-round" color="grey">
                     Login
                   </Button>
                 </Form>
@@ -82,7 +82,7 @@ function Login() {
         <div className="footer register-footer text-center">
           <h6>
             © {new Date().getFullYear()} {" "}
-            <i className="fa fa-heart heart" /> Adi-tans
+            <i className="fa fa-heart heart" /> Ad-ditans
           </h6>
         </div>
       </div>
