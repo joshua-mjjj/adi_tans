@@ -229,7 +229,6 @@ function LandingPage() {
                       go alone. If you want to go far, go together.
                     </p>
                   </CardBody>
-                
                 </Card>
               </Col>
             </Row>
