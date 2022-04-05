@@ -21,7 +21,7 @@ export const register =
       password,
     });
     dispatch({
-      type: userConstants.LOGIN_REQUEST,
+      type: userConstants.REGISTER_REQUEST,
     });
 
     console.log(data_object);
@@ -31,7 +31,7 @@ export const register =
         console.log(data);
         localStorage.setItem("user", JSON.stringify(data));
         dispatch({
-          type: userConstants.LOGIN_SUCCESS,
+          type: userConstants.REGISTER_SUCCESS,
           payload: data,
         });
         history.push("/login");
@@ -39,7 +39,7 @@ export const register =
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: userConstants.LOGIN_FAILURE,
+          type: userConstants.REGISTER_FAILURE,
           payload: err,
         });
       });
@@ -51,6 +51,7 @@ export const login = (username, password) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   dispatch({
@@ -121,6 +122,8 @@ export const login = (username, password) => async (dispatch) => {
           });
         });
 =======
+=======
+>>>>>>> Update:register
   const data_object = JSON.stringify({ username, password });
   dispatch({ type: userConstants.LOGIN_REQUEST });
   console.log(data_object);
@@ -141,7 +144,6 @@ export const login = (username, password) => async (dispatch) => {
         payload: err,
       });
     });
->>>>>>> Update:refractor register
 };
 export const logout = () => (dispatch) => {
 
