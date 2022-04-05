@@ -182,27 +182,6 @@ function IndexNavbar({ NotTrans }) {
                   </DropdownMenu>
                 </UncontrolledDropdown>
             </NavItem>
-            <NavItem>
-            <div style={{
-              marginTop: '17px',
-              display: 'flex'
-            }} >
-              <Input style={{
-                 borderRadius: '25px',
-                 width: '300px',
-                 height: '35px',
-                 paddingLeft: '20px',
-                 marginLeft: '10px'
-               }} 
-                  placeholder="Search news..." />
-              <div style={{
-                 marginTop: '12px',
-                 marginLeft: '12px',
-               }} >
-                  <i class="nc-icon nc-zoom-split" />
-              </div>
-            </div>
-            </NavItem>
           </Nav>
         </Collapse>
       </Container>

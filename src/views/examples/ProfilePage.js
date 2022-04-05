@@ -1,21 +1,3 @@
-/*!
-
-=========================================================
-* Paper Kit React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-kit-react
-
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/paper-kit-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 
 // reactstrap components
@@ -32,10 +14,14 @@ import {
   Container,
   Row,
   Col,
+  Form,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
@@ -57,7 +43,7 @@ function ProfilePage() {
   });
   return (
     <>
-      <ExamplesNavbar />
+      <IndexNavbar />
       <ProfilePageHeader />
       <div className="section profile-content">
         <Container>
@@ -189,10 +175,54 @@ function ProfilePage() {
               </Row>
             </TabPane>
             <TabPane className="text-center" tabId="2" id="following">
-              <h3 className="text-muted">Not following anyone yet :(</h3>
-              <Button className="btn-round" color="warning">
-                Find artists
-              </Button>
+                <div className="section landing-section">
+          <Container>
+            <Row>
+              <Col className="ml-auto mr-auto" md="8">
+                <h2 className="text-center">Keep in touch?</h2>
+                <Form className="contact-form">
+                  <Row>
+                    <Col md="6">
+                      <label>Name</label>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="nc-icon nc-single-02" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input placeholder="Name" type="text" />
+                      </InputGroup>
+                    </Col>
+                    <Col md="6">
+                      <label>Email</label>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="nc-icon nc-email-85" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input placeholder="Email" type="text" />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <label>Message</label>
+                  <Input
+                    placeholder="Tell us your thoughts and feelings..."
+                    type="textarea"
+                    rows="4"
+                  />
+                  <Row>
+                    <Col className="ml-auto mr-auto" md="4">
+                      <Button className="btn-fill" color="danger" size="lg">
+                        Send Message
+                      </Button>
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </div>
             </TabPane>
           </TabContent>
         </Container>
