@@ -14,7 +14,18 @@ import Login from "./views/routes/Login.js";
 import PrivateRoute from "./views/routes/PrivateRoute.js";
 // others
 
+import { store } from "store";
+import { loadUser } from "_actions/user.actions.js";
+
 function App() {
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+      if (token) {
+        store.dispatch(loadUser());
+      }
+  }, [])
+  
   return (
     <BrowserRouter>
       <Switch>

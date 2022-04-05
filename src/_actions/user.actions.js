@@ -82,4 +82,47 @@ export const login = (username, password) => async (dispatch) => {
           });
         });
 };
-export const logout = () => (dispatch) => {};
+export const logout = () => (dispatch) => {
+  
+};
+
+
+// LOAD USER
+export const loadUser = () => async (dispatch, getState) => {
+  // user Loading
+
+  await api
+    .get("/users/me/", tokenConfig(getState))
+    .then((res) => {
+      // console.log(res.data)
+      dispatch({
+        type: userConstants.USER_LOADED,
+        payload: res.data
+      });
+    })
+    .catch((err) => {
+      console.log(err)
+      dispatch({ type: userConstants.USER_LOADED_FAIL });
+    });
+};
+
+// setup config with token - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().authentication.token;
+  //console.log(token)
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  // if token, add to headers in config
+  if (token) {
+    config.headers['Authorization'] = `JWT ${token}`;
+  }
+  return config;
+};
+
+

@@ -16,6 +16,19 @@ export function authentication(state = initialState, action) {
         ...state,
         login_loading: true,
       };
+    case userConstants.USER_LOADED_FAIL:
+      localStorage.removeItem('token')
+      return {
+        ...state,
+        user: null,
+        loggedIn: false,
+      };
+    case userConstants.USER_LOADED:
+      return {
+        ...state,
+        user: action.payload,
+        loggedIn: true,
+      };
     case userConstants.LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload.token)
       return {

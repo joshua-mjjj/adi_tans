@@ -1,5 +1,6 @@
-
 import React from "react";
+import { connect } from "react-redux";
+
 // nodejs library that concatenates strings
 import classnames from "classnames";
 // reactstrap components
@@ -22,8 +23,8 @@ import {
   Input
 } from "reactstrap";
 
-function IndexNavbar({ NotTrans }) {
-  const [navbarColor, setNavbarColor] = React.useState(NotTrans ? "navbar" : "navbar-transparent");
+function IndexNavbar(props) {
+  const [navbarColor, setNavbarColor] = React.useState(props.NotTrans ? "navbar" : "navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
   const toggleNavbarCollapse = () => {
@@ -32,7 +33,7 @@ function IndexNavbar({ NotTrans }) {
   };
 
   React.useEffect(() => {
-    if(!NotTrans){
+    if(!props.NotTrans){
       const updateNavbarColor = () => {
         if (
           document.documentElement.scrollTop > 299 ||
@@ -62,7 +63,7 @@ function IndexNavbar({ NotTrans }) {
           <NavbarBrand
             data-placement="bottom"
             href="/index"
-            title="Coded by Creative Tim"
+            title=""
           >
             Ad-ditans
           </NavbarBrand>
@@ -138,20 +139,26 @@ function IndexNavbar({ NotTrans }) {
                     onClick={(e) => e.preventDefault()}
                     role="button"
                   >
-                    Login
+                    {props.auth.loggedIn ? "Account" : "Login" }
                   </DropdownToggle>
                   <DropdownMenu
                     aria-labelledby="dropdownMenuButton"
                     className="dropdown-info"
                   >
                     <DropdownItem header tag="span">
-                      Adi-tans Login
+                      {props.auth.loggedIn ? "Adi-tans Account" : "Adi-tans Login" }
                     </DropdownItem>
                     <DropdownItem
                       href="#pablo"
-                      onClick={(e) => window.location.href = "/login"}
+                      onClick={(e) => {
+                        if(props.auth.loggedIn){
+                          window.location.href = "/profile-page"
+                        }else { 
+                          window.location.href = "/login"
+                        }
+                      }}
                     >
-                      Login
+                      {props.auth.loggedIn ? "Account" : "Login" }
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -170,20 +177,28 @@ function IndexNavbar({ NotTrans }) {
                     onClick={(e) => e.preventDefault()}
                     role="button"
                   >
-                    Register
+                    {props.auth.loggedIn ? "Logout" : "Register" }
                   </DropdownToggle>
                   <DropdownMenu
                     aria-labelledby="dropdownMenuButton"
                     className="dropdown-info"
                   >
                     <DropdownItem header tag="span">
-                      Ad-ditans Register
+                      {props.auth.loggedIn ? "Ad-ditans Logout" : "Ad-ditans Register" }
                     </DropdownItem>
                     <DropdownItem
                       href="#pablo"
                       onClick={(e) => window.location.href = "/register"}
+                      onClick={(e) => {
+                        if(props.auth.loggedIn){
+                          localStorage.removeItem("token")
+                          window.location.href = "/index"
+                        }else { 
+                          window.location.href = "/register"
+                        }
+                      }}
                     >
-                      Register
+                      {props.auth.loggedIn ? "Logout" : "Register" }
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -195,4 +210,9 @@ function IndexNavbar({ NotTrans }) {
   );
 }
 
-export default IndexNavbar;
+const mapStateToProps = (state) => ({
+  auth: state.authentication,
+});
+
+export default connect(mapStateToProps, null)(IndexNavbar);
+

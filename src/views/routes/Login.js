@@ -10,7 +10,9 @@ import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { useDispatch } from "react-redux";
+
 import { login } from "_actions/user.actions";
+import { loadUser } from "_actions/user.actions.js";
 
 const userCredentials = {
   username: "",
@@ -20,6 +22,12 @@ const userCredentials = {
 function Login(props) {
   const dispatch = useDispatch();
   const [userInitials, setUserInitials] = React.useState(userCredentials);
+
+  React.useEffect(() => {
+    if(props.auth.loggedIn) {
+      props.loadUser();
+    }
+  }, [props, props.auth.loggedIn]);
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
@@ -54,11 +62,10 @@ function Login(props) {
     };
   });
 
-  console.log(props.auth.loggedIn)
     if (props.auth.loggedIn) {
     // if (props.auth.user !== null) {
         return <Redirect to="/profile-page" />;
-      }
+    }
 
   return (
     <>
@@ -126,4 +133,4 @@ const mapStateToProps = (state) => ({
   auth: state.authentication,
 });
 
-export default connect(mapStateToProps, null)(Login);
+export default connect(mapStateToProps, { loadUser })(Login);
