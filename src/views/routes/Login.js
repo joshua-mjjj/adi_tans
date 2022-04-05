@@ -6,7 +6,37 @@ import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 // core components
 import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
 
+import { useDispatch } from "react-redux";
+import { login } from "_actions/user.actions";
+
+const userCredentials = {
+  email: "",
+  password: "",
+};
+
 function Login() {
+  const dispatch = useDispatch();
+  const [userInitials, setUserInitials] = React.useState(userCredentials);
+
+  const handleInputChange = (e) => {
+    const { value, name } = e.target;
+    console.log(userInitials);
+    setUserInitials({
+      ...userInitials,
+      [name]: value,
+    });
+  };
+
+  const handleClearForm = () => {
+    setUserInitials(userCredentials);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(userInitials));
+    handleClearForm();
+  };
+
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("register-page");
@@ -30,37 +60,23 @@ function Login() {
             <Col className="ml-auto mr-auto" lg="4">
               <Card className="card-register ml-auto mr-auto">
                 <h3 className="title mx-auto">Ad-ditans Login</h3>
-                {/*<div className="social-line text-center">
-                  <Button
-                    className="btn-neutral btn-just-icon mr-1"
-                    color="facebook"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="fa fa-facebook-square" />
-                  </Button>
-                  <Button
-                    className="btn-neutral btn-just-icon mr-1"
-                    color="google"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="fa fa-google-plus" />
-                  </Button>
-                  <Button
-                    className="btn-neutral btn-just-icon"
-                    color="twitter"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="fa fa-twitter" />
-                  </Button>
-                </div>*/}
-                <Form className="register-form">
+                <Form className="register-form" onSubmit={handleSubmit}>
                   <label>Email</label>
-                  <Input placeholder="Email" type="text" />
+                  <Input
+                    placeholder="Email"
+                    type="text"
+                    value={userInitials.email}
+                    onChange={handleInputChange}
+                    name="email"
+                  />
                   <label>Password</label>
-                  <Input placeholder="Password" type="password" />
+                  <Input
+                    placeholder="Password"
+                    type="password"
+                    value={userInitials.password}
+                    onChange={handleInputChange}
+                    name="password"
+                  />
                   <Button block className="btn-round" color="grey">
                     Login
                   </Button>
@@ -81,8 +97,8 @@ function Login() {
         </Container>
         <div className="footer register-footer text-center">
           <h6>
-            © {new Date().getFullYear()} {" "}
-            <i className="fa fa-heart heart" /> Ad-ditans
+            © {new Date().getFullYear()} <i className="fa fa-heart heart" />{" "}
+            Ad-ditans
           </h6>
         </div>
       </div>
