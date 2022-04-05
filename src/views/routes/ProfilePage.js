@@ -22,6 +22,7 @@ import {
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
+import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 
 import ProfileItem from "./ProfileItem.js";
 import AddProfile from "./AddProfile.js";
