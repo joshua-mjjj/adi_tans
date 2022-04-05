@@ -42,9 +42,9 @@ function LandingPage() {
                   className="btn-round"
                   color="info"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={(e) => window.location.href = "/register"}
                 >
-                  See Details
+                  Get started
                 </Button>
               </Col>
             </Row>
@@ -152,7 +152,7 @@ function LandingPage() {
                       <img
                         alt="..."
                         src={
-                          require("assets/img/faces/joe-gardner-2.jpg").default
+                          require("assets/img/faces/josh.jpg").default
                         }
                       />
                     </a>
@@ -199,6 +199,34 @@ function LandingPage() {
                       strength of each member is the team. Coming together is a beginning, 
                       staying together is progress, and working together is success
                       
+                    </p>
+                  </CardBody>
+                
+                </Card>
+              </Col>
+              <Col md="12">
+                <Card className="card-profile card-plain">
+                  <div className="card-avatar">
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <img
+                        alt="..."
+                        src={
+                          require("assets/img/faces/christian.jpg")
+                            .default
+                        }
+                      />
+                    </a>
+                  </div>
+                  <CardBody>
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <div className="author">
+                        <CardTitle tag="h4">Hall Enoch Asanda</CardTitle>
+                        <h6 className="card-category">Developer</h6>
+                      </div>
+                    </a>
+                    <p className="card-description text-center">
+                      Growth and comfort can not co-exist. If you want to go fast, 
+                      go alone. If you want to go far, go together.
                     </p>
                   </CardBody>
                 

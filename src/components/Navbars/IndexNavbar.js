@@ -62,7 +62,6 @@ function IndexNavbar({ NotTrans }) {
           <NavbarBrand
             data-placement="bottom"
             href="/index"
-            target="_blank"
             title="Coded by Creative Tim"
           >
             Ad-ditans

@@ -21,7 +21,6 @@ function DemoFooter() {
               <li>
                 <a
                   href="/login"
-                  target="_blank"
                 >
                   Login
                 </a>
@@ -29,7 +28,6 @@ function DemoFooter() {
               <li>
                 <a
                   href="/register"
-                  target="_blank"
                 >
                   Register
                 </a>
