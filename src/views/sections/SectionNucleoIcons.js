@@ -13,14 +13,13 @@ function SectionNucleoIcons() {
         <Container>
           <Row>
             <Col lg="6" md="12">
-              <h2 className="title">About Global News Plartform</h2>
+              <h2 className="title">About Ad-ditans Platform</h2>
               <br />
               <p className="description">
-                Global news is a world class news plartform that provides you with the instant
-                news Updates at your disposal all the time. We are committed to Serving our readers
-                with all news concerning current affairs, Business Updates, Weather Updates, Polictics
-                and much more you don't want to miss out on.
-    
+                Ad-ditans is a world class platform that empowers you through growing your 
+                ideas with the help of an open source community of mentors and like minded 
+                people around you who are passionate about increase and are invested in success 
+                through joint investment.
               </p>
               <br />
             </Col>

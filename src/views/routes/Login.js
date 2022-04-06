@@ -31,7 +31,7 @@ function Login(props) {
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
-    console.log(userInitials);
+    // console.log(userInitials);
     setUserInitials({
       ...userInitials,
       [name]: value,

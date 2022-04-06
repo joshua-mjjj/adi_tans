@@ -32,17 +32,16 @@ export const register = (userInitials, history) => (dispatch) => {
         first_name: userInitials.first_name,
         last_name: userInitials.last_name,
         phone_number: userInitials.phone_number,
+        account_type: userInitials.account_type,
       };
       console.log(object);
       api
         .post("/signup/", object, config)
         .then(({ data }) => {
-          console.log(data);
-          localStorage.setItem("user", JSON.stringify(data));
-          dispatch({
-            type: userConstants.LOGIN_SUCCESS,
-            payload: data,
-          });
+          // dispatch({
+          //   type: userConstants.REGISTER_SUCCESS,
+          //   payload: data,
+          // });
           history.push("/login");
         })
         .catch((err) => {
@@ -83,7 +82,7 @@ export const login = (username, password) => async (dispatch) => {
         });
 };
 export const logout = () => (dispatch) => {
-  
+
 };
 
 

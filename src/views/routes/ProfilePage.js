@@ -1,5 +1,5 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import {
   Button,
   Label,
@@ -18,17 +18,28 @@ import {
   InputGroupText,
   InputGroup,
 } from "reactstrap";
+import Chip from '@mui/material/Chip';
+import Icon from '@mui/icons-material/CheckCircleOutline';
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 
+import { loadUser } from "_actions/user.actions.js";
+
 import ProfileItem from "./ProfileItem.js";
 import AddProfile from "./AddProfile.js";
+import AddProfileMentor from "./AddProfileMentor.js";
 
-function ProfilePage() {
+function ProfilePage(props) {
   const [activeTab, setActiveTab] = React.useState("1");
+
+  //  React.useEffect(() => {
+  //   if(props.auth.loggedIn) {
+  //     props.loadUser();
+  //   }
+  // }, [props, props.auth.loggedIn]);
 
   const toggle = (tab) => {
     if (activeTab !== tab) {
@@ -48,6 +59,7 @@ function ProfilePage() {
       <IndexNavbar />
       <ProfilePageHeader />
       <div className="section profile-content">
+       {props.auth.user !== null ? (
         <Container>
           <div className="owner">
             <div className="avatar">
@@ -58,10 +70,52 @@ function ProfilePage() {
               />
             </div>
             <div className="name">
-              <h4 className="title">
-                User name <br />
+              {
+                props.auth.user.account_type === "normal_user" ? 
+                (
+                  <Chip
+                    style={{ 
+                      color: 'green',
+                      border: '1px solid green',
+                   }}
+                    label="Normal user"
+                    // onClick={handleClick}
+                    icon={<Icon style={{ color : 'green' }} height="23px" width="23px" alt="" />}
+                  />
+                ):null
+              }
+              {
+                props.auth.user.account_type === "premium_normal_user" ? 
+                (
+                  <Chip
+                    style={{ 
+                      color: 'blue',
+                      border: '1px solid blue',
+                   }}
+                    label="Premium user"
+                    // onClick={handleClick}
+                    icon={<Icon style={{ color : 'blue' }} height="23px" width="23px" alt="" />}
+                  />
+                ):null
+              }
+              {
+                props.auth.user.account_type === "mentor" ? 
+                (
+                  <Chip
+                    style={{ 
+                      color: 'red',
+                      border: '1px solid red',
+                   }}
+                    label="Mentor"
+                    // onClick={handleClick}
+                    icon={<Icon style={{ color : 'red' }} height="23px" width="23px" alt="" />}
+                  />
+                ):null
+              }
+              <h4 className="">
+                {props.auth.user.username} <br />
               </h4>
-              <h6 className="description">Music Producer</h6>
+              <h6 className="description">{props.auth.user.email}</h6>
             </div>
           </div>
           {/*<Row>
@@ -118,16 +172,27 @@ function ProfilePage() {
               </Row>
             </TabPane>
             <TabPane className="text-center" tabId="2" id="following">
-                <div className="">
-                 <AddProfile />
-                </div>
+             <div className="">
+                {
+                    props.auth.user.account_type === "normal_user" || props.auth.user.account_type === "premium_normal_user" ? 
+                    (<AddProfile />): null
+                }
+                {
+                    props.auth.user.account_type === "mentor" ? 
+                    (<AddProfileMentor />): null
+                }
+             </div>
             </TabPane>
           </TabContent>
-        </Container>
+        </Container>): null}
       </div>
       <DemoFooter />
     </>
   );
 }
 
-export default ProfilePage;
+const mapStateToProps = (state) => ({
+  auth: state.authentication,
+});
+
+export default connect(mapStateToProps, { loadUser })(ProfilePage);

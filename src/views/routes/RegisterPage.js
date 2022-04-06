@@ -7,6 +7,9 @@ import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
 import CircularProgress from "@mui/material/CircularProgress";
 
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
 import { useDispatch } from "react-redux";
 import { register } from "_actions/user.actions";
 import { useHistory } from "react-router-dom";
@@ -18,6 +21,7 @@ const userCredentials = {
   last_name: "",
   username: "",
   phone_number: "",
+  account_type: ""
 };
 
 function RegisterPage() {
@@ -27,7 +31,7 @@ function RegisterPage() {
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
-    console.log(userInitials);
+    // console.log(userInitials);
     setUserInitials({
       ...userInitials,
       [name]: value,
@@ -65,58 +69,98 @@ function RegisterPage() {
         <Container>
           <Row>
             <Col className="ml-auto mr-auto" lg="4">
-              <Card className="card-register ml-auto mr-auto">
+              <Card style={{ width : '600px' }} className="card-register ml-0 mr-0">
                 <h3 className="title mx-auto">Ad-ditans Register</h3>
-
                 <Form className="register-form" onSubmit={handleSubmit}>
-                  <label>First Name</label>
-                  <Input
-                    placeholder="First Name"
-                    type="text"
-                    value={userInitials.first_name}
-                    onChange={handleInputChange}
-                    name="first_name"
-                  />
-                  <label>Last Name</label>
-                  <Input
-                    placeholder="Last Name"
-                    type="text"
-                    value={userInitials.last_name}
-                    onChange={handleInputChange}
-                    name="last_name"
-                  />
-                  <label>Username</label>
-                  <Input
-                    placeholder="Username"
-                    type="text"
-                    value={userInitials.username}
-                    onChange={handleInputChange}
-                    name="username"
-                  />
-                  <label>Email</label>
-                  <Input
-                    placeholder="Email"
-                    type="text"
-                    value={userInitials.email}
-                    onChange={handleInputChange}
-                    name="email"
-                  />
-                  <label>Contact</label>
-                  <Input
-                    placeholder="Contact"
-                    type="tel"
-                    value={userInitials.phone_number}
-                    onChange={handleInputChange}
-                    name="phone_number"
-                  />
-                  <label>Password</label>
-                  <Input
-                    placeholder="Password"
-                    type="password"
-                    value={userInitials.password}
-                    onChange={handleInputChange}
-                    name="password"
-                  />
+                   <Row>
+                    <Col md="6">
+                    <label>First Name</label>
+                      <Input
+                        placeholder="First Name"
+                        type="text"
+                        value={userInitials.first_name}
+                        onChange={handleInputChange}
+                        name="first_name"
+                      />
+                      </Col>
+                  <Col md="6">
+                     <label>Last Name</label>
+                      <Input
+                        placeholder="Last Name"
+                        type="text"
+                        value={userInitials.last_name}
+                        onChange={handleInputChange}
+                        name="last_name"
+                      />
+                      </Col>
+                  </Row>
+                  <Row>
+                    <Col md="6">
+                     <label>Username</label>
+                      <Input
+                        placeholder="Username"
+                        type="text"
+                        value={userInitials.username}
+                        onChange={handleInputChange}
+                        name="username"
+                      />
+                      </Col>
+                  <Col md="6">
+                     <label>Email</label>
+                      <Input
+                        placeholder="Email"
+                        type="text"
+                        value={userInitials.email}
+                        onChange={handleInputChange}
+                        name="email"
+                      />
+                      </Col>
+                  </Row>
+                  <Row>
+                    <Col md="6">
+                      <label>Contact</label>
+                        <Input
+                          placeholder="Contact"
+                          type="tel"
+                          value={userInitials.phone_number}
+                          onChange={handleInputChange}
+                          name="phone_number"
+                        />
+                      </Col>
+                      <Col md="6">
+                     <label>Password</label>
+                        <Input
+                          placeholder="Password"
+                          type="password"
+                          value={userInitials.password}
+                          onChange={handleInputChange}
+                          name="password"
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                    <Col md="12">
+                      <label>Join as: </label>
+                        <Select
+                            onChange={handleInputChange}
+                            disableUnderline
+                            displayEmpty
+                            fullWidth
+                            value={userInitials.account_type}
+                            name="account_type"
+                            style={{
+                                  fontSize: '13px',
+                                  color: 'white',
+                                  border: '1px solid #cfd7de',
+                                  height: '33px',
+                                  borderRadius: '5px',
+                            }}
+                          >
+                      <MenuItem value="normal_user">Normal User</MenuItem>
+                      <MenuItem value="premium_normal_user">Premium User</MenuItem>
+                    </Select>
+                      </Col>
+                    </Row>
                   <Button block className="btn-round" color="white">
                     Register
                   </Button>
