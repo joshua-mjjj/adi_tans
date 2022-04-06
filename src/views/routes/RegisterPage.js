@@ -5,29 +5,28 @@ import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 
 // core components
 import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
-import CircularProgress from "@mui/material/CircularProgress";
 
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "_actions/user.actions";
 import { useHistory } from "react-router-dom";
+import Spinner from "components/Spinner";
+import { MenuItem, Select } from "@mui/material";
 
 const userCredentials = {
-  email: "",
-  password: "",
   first_name: "",
   last_name: "",
+  email: "",
   username: "",
   phone_number: "",
-  account_type: ""
+  password: "",
 };
 
 function RegisterPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [userInitials, setUserInitials] = React.useState(userCredentials);
+  const { register_loading } = useSelector((state) => state.registration);
+  console.log(register_loading);
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
@@ -44,7 +43,31 @@ function RegisterPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(userInitials, history));
+
+    if (userInitials) {
+      if (
+        userInitials.first_name &&
+        userInitials.last_name &&
+        userInitials.email &&
+        userInitials.username &&
+        userInitials.phone_number &&
+        userInitials.password
+      ) {
+        dispatch(
+          register(
+            userInitials.first_name,
+            userInitials.last_name,
+            userInitials.email,
+            userInitials.username,
+            userInitials.password,
+            userInitials.phone_number,
+            history
+          )
+        );
+      }
+    } else {
+      // send message or error to user
+    }
     handleClearForm();
   };
 
@@ -163,6 +186,7 @@ function RegisterPage() {
                     </Row>
                   <Button block className="btn-round" color="white">
                     Register
+                    {register_loading && <Spinner />}
                   </Button>
                 </Form>
                 <div className="forgot">

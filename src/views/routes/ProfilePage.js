@@ -30,10 +30,12 @@ import { loadUser } from "_actions/user.actions.js";
 
 import ProfileItem from "./ProfileItem.js";
 import AddProfile from "./AddProfile.js";
-import AddProfileMentor from "./AddProfileMentor.js";
+import { useSelector } from "react-redux";
 
 function ProfilePage(props) {
   const [activeTab, setActiveTab] = React.useState("1");
+  const { user } = useSelector((state) => state.authentication);
+  console.log(user);
 
   //  React.useEffect(() => {
   //   if(props.auth.loggedIn) {
@@ -118,20 +120,6 @@ function ProfilePage(props) {
               <h6 className="description">{props.auth.user.email}</h6>
             </div>
           </div>
-          {/*<Row>
-            <Col className="ml-auto mr-auto text-center" md="6">
-              <p>
-                An artist of considerable range, Jane Faker — the name taken by
-                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                and records all of his own music, giving it a warm, intimate
-                feel with a solid groove structure.
-              </p>
-              <br />
-              <Button className="btn-round" color="default" outline>
-                <i className="fa fa-cog" /> Settings
-              </Button>
-            </Col>
-          </Row>*/}
           <br />
           <div className="nav-tabs-navigation">
             <div className="nav-tabs-wrapper">
@@ -143,7 +131,7 @@ function ProfilePage(props) {
                       toggle("1");
                     }}
                   >
-                    <span style={{ fontWeight: 'bold' }} >Profiles</span>
+                    <span style={{ fontWeight: "bold" }}>Profiles</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -153,13 +141,12 @@ function ProfilePage(props) {
                       toggle("2");
                     }}
                   >
-                    <span style={{ fontWeight: 'bold' }} >Add Profiles</span>
+                    <span style={{ fontWeight: "bold" }}>Add Profiles</span>
                   </NavLink>
                 </NavItem>
               </Nav>
             </div>
           </div>
-          {/* Tab panes */}
           <TabContent className="following" activeTab={activeTab}>
             <TabPane tabId="1" id="follows">
               <Row>
@@ -172,16 +159,9 @@ function ProfilePage(props) {
               </Row>
             </TabPane>
             <TabPane className="text-center" tabId="2" id="following">
-             <div className="">
-                {
-                    props.auth.user.account_type === "normal_user" || props.auth.user.account_type === "premium_normal_user" ? 
-                    (<AddProfile />): null
-                }
-                {
-                    props.auth.user.account_type === "mentor" ? 
-                    (<AddProfileMentor />): null
-                }
-             </div>
+              <div className="">
+                <AddProfile />
+              </div>
             </TabPane>
           </TabContent>
         </Container>): null}
