@@ -5,7 +5,7 @@ import { userConstants } from "_constants";
 const initialState = {
   login_loading: false,
   loggedIn: false,
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem("token"),
   user: null,
   token: null,
 };
@@ -18,7 +18,7 @@ export function authentication(state = initialState, action) {
         login_loading: true,
       };
     case userConstants.USER_LOADED_FAIL:
-      localStorage.removeItem('token')
+      localStorage.removeItem("token");
       return {
         ...state,
         user: null,
@@ -40,10 +40,9 @@ export function authentication(state = initialState, action) {
     case userConstants.LOGIN_FAILURE:
       return {};
     case userConstants.LOGOUT:
+      localStorage.removeItem("token");
       return {};
     default:
       return state;
   }
 }
-
-

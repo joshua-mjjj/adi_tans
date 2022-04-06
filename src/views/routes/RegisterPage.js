@@ -6,26 +6,19 @@ import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 // core components
 import ExamplesNavbar from "components/Navbars/IndexNavbar.js";
 
-<<<<<<< HEAD
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-
-import { useDispatch } from "react-redux";
-=======
 import { useDispatch, useSelector } from "react-redux";
->>>>>>> Update:Spinner
 import { register } from "_actions/user.actions";
 import { useHistory } from "react-router-dom";
 import Spinner from "components/Spinner";
+import { MenuItem, Select } from "@mui/material";
 
 const userCredentials = {
-  email: "",
-  password: "",
   first_name: "",
   last_name: "",
+  email: "",
   username: "",
   phone_number: "",
-  account_type: ""
+  password: "",
 };
 
 function RegisterPage() {
@@ -53,21 +46,21 @@ function RegisterPage() {
 
     if (userInitials) {
       if (
-        userInitials.email &&
         userInitials.first_name &&
         userInitials.last_name &&
-        userInitials.password &&
+        userInitials.email &&
+        userInitials.username &&
         userInitials.phone_number &&
-        userInitials.username
+        userInitials.password
       ) {
         dispatch(
           register(
-            userInitials.email,
             userInitials.first_name,
             userInitials.last_name,
+            userInitials.email,
+            userInitials.username,
             userInitials.password,
             userInitials.phone_number,
-            userInitials.username,
             history
           )
         );

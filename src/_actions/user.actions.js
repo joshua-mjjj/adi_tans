@@ -7,7 +7,7 @@ const api = axios.create({
 });
 
 export const register =
-  (email, username, first_name, last_name, phone_number, password, history) =>
+  (first_name, last_name, email, username, phone_number, password, history) =>
   (dispatch) => {
     const config = {
       headers: {
@@ -15,10 +15,10 @@ export const register =
       },
     };
     const data_object = JSON.stringify({
-      email,
-      username,
       first_name,
       last_name,
+      email,
+      username,
       phone_number,
       password,
     });
@@ -147,10 +147,59 @@ export const login = (username, password) => async (dispatch) => {
       });
     });
 };
+
+export const add_profile =
+  (
+    id_name,
+    investment_plan,
+    latitude,
+    longitude,
+    profile_type,
+    owner,
+    profile_pic
+  ) =>
+  async (dispatch, getState) => {
+    const profile = JSON.stringify({
+      id_name,
+      investment_plan,
+      latitude,
+      longitude,
+      profile_type,
+      owner,
+      profile_pic,
+    });
+    console.log(profile);
+
+    dispatch({ type: userConstants.PROFILE_REQUEST });
+    // console.log(data_object);
+    await api
+      .post("/profiles/", profile, tokenConfig(getState))
+      .then(({ data }) => {
+        console.log(data);
+
+        dispatch({
+          type: userConstants.PROFILE_SUCCESS,
+          payload: data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: userConstants.PROFILE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
 export const logout = () => (dispatch) => {
+<<<<<<< HEAD
 
+=======
+  dispatch({
+    type: userConstants.LOGOUT,
+  });
+>>>>>>> Update: User profile working
 };
-
 
 // LOAD USER
 export const loadUser = () => async (dispatch, getState) => {
@@ -162,11 +211,11 @@ export const loadUser = () => async (dispatch, getState) => {
       // console.log(res.data)
       dispatch({
         type: userConstants.USER_LOADED,
-        payload: res.data
+        payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
       dispatch({ type: userConstants.USER_LOADED_FAIL });
     });
 };
@@ -175,19 +224,17 @@ export const loadUser = () => async (dispatch, getState) => {
 export const tokenConfig = (getState) => {
   // Get token from state
   const token = getState().authentication.token;
-  //console.log(token)
+  console.log(token);
 
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   };
   // if token, add to headers in config
   if (token) {
-    config.headers['Authorization'] = `JWT ${token}`;
+    config.headers["Authorization"] = `JWT ${token}`;
   }
   return config;
 };
-
-

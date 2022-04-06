@@ -102,7 +102,7 @@ function Login(props) {
                     onChange={handleInputChange}
                     name="password"
                   />
-                  <Button block className="btn-round" color="grey">
+                  <Button block className="btn-round" color="grey" type="submit">
                     Login {login_loading && <Spinner />}
                   </Button>
                 </Form>
