@@ -47,59 +47,9 @@ export const register =
       });
   };
 
-export const login = (username, password) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-  dispatch({
-    type: userConstants.LOGIN_REQUEST,
-  });
-
-  if (userInitials) {
-    if (
-      (userInitials.email && userInitials.password,
-      userInitials.username &&
-        userInitials.first_name &&
-        userInitials.last_name &&
-        userInitials.phone_number)
-    ) {
-      const object = {
-        email: userInitials.email,
-        password: userInitials.password,
-        username: userInitials.username,
-        first_name: userInitials.first_name,
-        last_name: userInitials.last_name,
-        phone_number: userInitials.phone_number,
-        account_type: userInitials.account_type,
-      };
-      console.log(object);
-      api
-        .post("/signup/", object, config)
-        .then(({ data }) => {
-          // dispatch({
-          //   type: userConstants.REGISTER_SUCCESS,
-          //   payload: data,
-          // });
-          history.push("/login");
-        })
-        .catch((err) => {
-          console.log(err);
-          dispatch({
-            type: userConstants.LOGIN_FAILURE,
-            payload: err,
-          });
-        });
-    }
-  }
-};
 
 export const login = (username, password) => async (dispatch) => {
-
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -123,29 +73,6 @@ export const login = (username, password) => async (dispatch) => {
             payload: err,
           });
         });
-=======
-=======
->>>>>>> Update:register
-  const data_object = JSON.stringify({ username, password });
-  dispatch({ type: userConstants.LOGIN_REQUEST });
-  console.log(data_object);
-  await api
-    .post("/login/", data_object, config)
-    .then(({ data }) => {
-      console.log(data);
-      localStorage.setItem("user", JSON.stringify(data));
-      dispatch({
-        type: userConstants.LOGIN_SUCCESS,
-        payload: data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: userConstants.LOGIN_FAILURE,
-        payload: err,
-      });
-    });
 };
 
 export const add_profile =
@@ -192,13 +119,9 @@ export const add_profile =
   };
 
 export const logout = () => (dispatch) => {
-<<<<<<< HEAD
-
-=======
   dispatch({
     type: userConstants.LOGOUT,
   });
->>>>>>> Update: User profile working
 };
 
 // LOAD USER
